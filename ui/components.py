@@ -7,7 +7,6 @@ class SocialAppComponents:
         self.root = root
 
     def create_heading(self, container, text):
-        # Text color: Black in light mode, White in dark mode
         heading = ctk.CTkLabel(
             container,
             text=text,
@@ -21,7 +20,6 @@ class SocialAppComponents:
         if icon_path and os.path.exists(icon_path):
             img = ctk.CTkImage(light_image=Image.open(icon_path), size=(20, 20))
 
-        # --- Logic: Set defaults, then update with kwargs ---
         button_settings = {
             "text": "" if icon_only else text,
             "image": img,
@@ -42,11 +40,9 @@ class SocialAppComponents:
     def create_text_input(self, container, label_text, placeholder, is_password=False):
         frame = ctk.CTkFrame(container, fg_color="transparent")
 
-        # Labels also benefit from tuples
         label = ctk.CTkLabel(frame, text=label_text, text_color=("#333333", "#bbbbbb"))
         label.pack(anchor="w")
 
-        # Border color changes based on theme
         entry = ctk.CTkEntry(
             frame,
             placeholder_text=placeholder,
@@ -58,11 +54,6 @@ class SocialAppComponents:
         return frame
 
     def create_frame_card(self, container, title=None, **kwargs):
-        """
-        A generic container for grouping components.
-        Provides consistent rounding and background.
-        """
-        # Default styling that can be overridden by kwargs
         card_args = {
             "corner_radius": 15,
             "fg_color": ("#f2f2f2", "#252525"),  # Subtle light/dark contrast
@@ -73,7 +64,6 @@ class SocialAppComponents:
 
         card_frame = ctk.CTkFrame(container, **card_args)
 
-        # If a title is provided, add it at the top automatically
         if title:
             title_label = ctk.CTkLabel(
                 card_frame,
